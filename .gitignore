@@ -1,2 +1,2 @@
-db.sqlite3
-integration_project/settings.py
+*.pyc
+venv/

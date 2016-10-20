@@ -1,0 +1,22 @@
+input {
+    display: inline-block;
+}
+li {
+    list-style: none;
+}
+.messages {
+    border: 1px solid black;
+}
+.error {
+    color: red;
+}
+.success {
+    color: green;
+}
+
+.row1 {
+    background: pink;
+}
+.row2 {
+    background: #FFF;
+}

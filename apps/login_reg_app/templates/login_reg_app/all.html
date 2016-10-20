@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>List of all users</title>
+        {% load staticfiles %}
+        <link rel="stylesheet" href="{% static 'login_reg_app/css/styles.css' %}"media="screen" title="no title"  charset="utf-8">
+    </head>
+    <body>
+        <h1>Users:</h1>
+        {% if messages %}
+            <ul class='messages'>
+            {% for message in messages %}
+                <li {% if message.tags %}class='{{message.tags}}'{% endif %}>{{message}}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        {% if users %}
+            <table>
+                <tr class='row1'>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>User ID</th>
+                </tr>
+                {% for user in users %}
+                <tr class="{% cycle 'row2' 'row1' %}">
+                    <th>{{user.first_name}}</th>
+                    <th>{{user.last_name}}</th>
+                    <th>{{user.email}}</th>
+                    <th>{{user.id}}</th>
+                </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+        <a href="{% url 'users:logout' %}">Logout</a>
+    </body>
+</html>
