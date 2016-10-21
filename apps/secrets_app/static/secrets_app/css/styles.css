@@ -20,3 +20,6 @@ li {
 .row2 {
     background: #FFF;
 }
+.secret {
+  border: 5px dotted pink;
+}

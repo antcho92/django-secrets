@@ -23,11 +23,11 @@
                 <br>
                 Last Name: <input type="text" name="last_name" value="">
                 <br>
-                Email: <input type="text" name="email" value="">
+                Email: <input type="email" name="email" value="">
                 <br>
-                Password: <input type="text" name="pw" value="">
+                Password: <input type="password" name="pw" value="">
                 <br>
-                Confirm Password: <input type="text" name="pw_confirmation" value="">
+                Confirm Password: <input type="password" name="pw_confirmation" value="">
                 <br>
                 <input type="submit" name="submit" value="Register">
             </form>
@@ -38,9 +38,9 @@
             <form class="" action="
             {% url 'users:login' %}" method="post">
                 {% csrf_token %}
-                Email: <input type="text" name="email" value="">
+                Email: <input type="email" name="email" value="">
                 <br>
-                Password: <input type="text" name="pw" value="">
+                Password: <input type="password" name="pw" value="">
                 <br>
                 <input type="submit" name="login" value="Login">
             </form>

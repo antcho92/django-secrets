@@ -2,16 +2,42 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Secrets</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'secrets_app/css/styles.css' %}"media="screen" title="no title"  charset="utf-8">
   </head>
   <body>
-    <h1>Secrets</h1>
-    {% if messages %}
-        <ul class='messages'>
-        {% for message in messages %}
-            <li {% if message.tags %}class='{{message.tags}}'{% endif %}>{{message}}</li>
+    <header>
+      <h1>Secrets</h1>
+      <a href="{% url 'users:logout' %}">Logout</a>
+      {% if messages %}
+          <ul class='messages'>
+          {% for message in messages %}
+              <li {% if message.tags %}class='{{message.tags}}'{% endif %}>{{message}}</li>
+          {% endfor %}
+          </ul>
+      {% endif %}
+    </header>
+    <div id="add_secret">
+      <form class="" action="{% url 'secrets:add' %}" method="post">
+        {% csrf_token %}
+        <textarea name="content" rows="8" cols="40"></textarea>
+        <input type="submit" name="submit" value="Post Secret">
+      </form>
+    </div>
+    <div id="secrets">
+      {% if secrets %}
+        {% for secret in secrets %}
+          <div class="secret">
+            <p>{{secret.content}}</p>
+            <p>Number of likes: {{secret.likes.count}}</p>
+            <a href="{% url 'secrets:like' secret_id=secret.id %}">Like</a>
+            {% if request.session.user_id == secret.user.id %}
+              <a href="{% url 'secrets:delete' id=secret.id %}">Delete</a>
+            {% endif %}
+          </div>
         {% endfor %}
-        </ul>
-    {% endif %}
+      {% endif %}
+    </div>
   </body>
 </html>
